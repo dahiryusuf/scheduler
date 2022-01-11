@@ -32,7 +32,7 @@ export default function Appointment(props) {
     transition(SAVING)
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
-    .catch(error => transition(ERROR_SAVE,true));
+    .catch(error => transition(ERROR_SAVE));
     
   }
   function cancel() {
@@ -41,7 +41,6 @@ export default function Appointment(props) {
     .then(() => transition(EMPTY))
     .catch(error => transition(ERROR_DELETE, true));
   }
-
   return (
     <article className="appointment">
       <Header time = {props.time}/>
@@ -59,7 +58,7 @@ export default function Appointment(props) {
        {mode === SAVING && <Status message = "SAVING"  />}
        {mode === DELETE && <Status message = "DELETE"  />}
        {mode === EDIT && <Form student = {props.interview.student} interviewer={props.interview.interviewer.id} interviewers = {props.interviewers} onSave = {save} onCancel ={() => back()}  />}
-       {mode === CONFIRM && <Confirm onCancel={() => back(SHOW)} onConfirm = {cancel} />}
+       {mode === CONFIRM && <Confirm onCancel={() => back()} onConfirm = {cancel} />}
        {mode === ERROR_SAVE && <Error message = {"save"} onClose = {() => back()} />}
        {mode === ERROR_DELETE && <Error message = {"delete"} onClose = {() => back()} />}
 
