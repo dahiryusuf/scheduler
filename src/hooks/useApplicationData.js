@@ -43,10 +43,7 @@ function bookInterview(id, interview) {
     [id]: appointment
   };
 
-  setState({
-    ...state,
-    appointments
-  });
+  
 
   return axios.put(`http://localhost:8001/api/appointments/${id}`, appointments[id])
   .then(() => {

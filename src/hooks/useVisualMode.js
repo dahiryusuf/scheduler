@@ -8,19 +8,18 @@ export default function useVisualMode(initial) {
     let mod = [...history]
     if(replace){
       mod.pop();
-      setHistory((prev) => [...mod, modes])
+      setHistory(() => [...mod, modes])
     }else{
-   setHistory(prev => ([...mod, modes]))}
+   setHistory(prev => ([...prev, modes]))}
     setMode(modes)
-
   }
   function back() {
     let History = [...history]
     if (history.length <= 1) {
       setMode(initial);
     } else {
+      setMode(history[history.length - 2]);
       History.pop()
-      setMode(History[History.length - 1]);
       setHistory(History);
     }
 

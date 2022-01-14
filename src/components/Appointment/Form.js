@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
-import InterviewerListItem from 'components/InterviewerListItem';
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
@@ -24,7 +23,9 @@ export default function Form(props) {
       return;
     }
     setError("")
+   
     props.onSave(student, interviewer);
+
   }
   return (
     <main className="appointment__card appointment__card--create">
